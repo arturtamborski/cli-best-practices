@@ -340,7 +340,17 @@ Users who are color blind cannot receive information that is conveyed only throu
 
 ### Avoid using blinking font (ANSI modifier)
 
-![cli-best-practises%20ac3e9ac9579f4ba6a53c7be0a84e3458/Untitled.png](cli-best-practises%20ac3e9ac9579f4ba6a53c7be0a84e3458/Untitled.png)
+Testing your work:
+- assistive Tech
+  Familiraize yourself with screen-reader tech like VoiceOver JAWS and NVDA. If you can, get an assistive technology lab and test out your software. If you can't, improvise!
+- Content and naming
+  Am I saying this in the simplest, most direct way? Do my error messages make sense and give the users a path forward?
+- Yes, you too
+  Test with differently-abled users!
+- Automation
+  Add automated a11y linter to your CI pipeline. Design automated tests with a11y in mind.
+
+
 
 [https://speakerdeck.com/raqueldesigns/everyone-should-be-able-to-use-your-software-accessibility-for-balanced-teams?slide=42](https://speakerdeck.com/raqueldesigns/everyone-should-be-able-to-use-your-software-accessibility-for-balanced-teams?slide=42)
 
@@ -352,7 +362,7 @@ Users who are color blind cannot receive information that is conveyed only throu
 
 ### Let users check and change their answers before they submit them
 
-![cli-best-practises%20ac3e9ac9579f4ba6a53c7be0a84e3458/Untitled%201.png](cli-best-practises%20ac3e9ac9579f4ba6a53c7be0a84e3458/Untitled%201.png)
+Accessibility is important - make your applications accessible because its the right thing to do, but if you don't want to do it because it's the right thing to do, do it because it's the legally required thing - https://section508.gov/
 
 # DOCUMENTATION
 
