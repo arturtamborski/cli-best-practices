@@ -1,17 +1,16 @@
 <br>
 
-# [cli-best-practises](https://hackmd.io/@arturtamborski/cli-best-practices)
+# [cli-best-practices](https://hackmd.io/@arturtamborski/cli-best-practices)
 
 
 <br><br><br>
 
-# BASICS
-
+# 1. BASICS
 
 
 <br>
 
-### 1. Make sure that your tool at least works
+### 1.1. Make sure that your tool at least works
 
 That may sound obvious but it's very important that your tool at **minimum** just works. It prints something to stdout, it does not trip on it's own flags and that these flags actually are documented and have an effect on the application. 
 
@@ -35,14 +34,14 @@ Please, note that "just works" is your minimum viable target to achieve. You sho
 <br>
 
 
-### 2. Document every public flag
+### 1.2. Document every public flag
 
 Every flag that's available to the user must be documented. It is discouraged to have hidden flags but if that's the case - make sure that hidden flags are not used as an example or do not show up in answers.
 
 
 <br>
 
-### 3. Stick to well established conventions.
+### 1.3. Stick to well established conventions.
 
 Don't reinvent the flags with your fancy syntax like `-Cool_Flag:someValue`. It's confusing for everyone, including you.
 
@@ -51,93 +50,93 @@ Don't reinvent the flags with your fancy syntax like `-Cool_Flag:someValue`. It'
 
 <br>
 
-### 4. Utilize exit codes
+### 1.4. Utilize exit codes
 
 Use them, expose them and inform the user about them.
 
 
 <br>
 
-### 5. Provide `--help`
+### 1.5. Provide `--help`
 
 Your tool has to provide some built-in way of informing the user what it does and how to use it. That's the minimum requirement but it's absolutely necessary.
 
 
 <br>
 
-### 6. Learn from others, copy the best.
+### 1.6. Learn from others, copy the best.
 
 gh-cli, heroku cli
 
 
 <br>
 
-### Keep the tool name short, unique and easy to remember.
+### 1.7 Keep the tool name short, unique and easy to remember.
 
 If that's not possible consider supporting alternative binary name (angular-cli → ng).
 
 
 <br>
 
-### Tool has to be predictable
+### 1.8. Tool has to be predictable
 
 
 <br>
 
-### Tool has to be task oriented
+### 1.9. Tool has to be task oriented
 
 
 <br>
 
-### Tool has to be friendly to people and scripts.
+### 1.10. Tool has to be friendly to people and scripts.
 
 
 <br>
 
-### Tool has to be high quality
+### 1.11. Tool has to be high quality
 
 It's as important as your API. Actually, it *is* your API, but for humans.
 
 
 <br>
 
-### Commands that read like sentences are easier to remember
+### 1.12. Commands that read like sentences are easier to remember
 
 
 <br><br><br>
 
-# FLAGS
+# 2. FLAGS
 
 
 <br>
 
-### As always, Consistency is the Key.
+### 2.1. As always, Consistency is the Key.
 
 By far the most commonly used (and thus the *only good way)* of writting flags is with the dash-case. Do not use anything else. Yeah, java uses `-Xmx`, but it's their problem, not your option. Do not use anything else other than `--option-name`. Please.
 
 
 <br>
 
-### This applies to environment variables as well.
+### 2.2. This applies to environment variables as well.
 
 `GOOD_ENV_VAR_NAME` vs `BAD_envVarName`. Yes, they are case sensitive, no, you should not leverage that. Please stick with upper casing or `SCREAMING_SNAKE_CASE` if that convinces you more.
 
 
 <br>
 
-### 1. Every flag that can have a default value, should have default value.
+### 2.3. Every flag that can have a default value, should have default value.
 
 Defaults have to be sensible and meaningful. If you are not sure, better to leave it off and come back after reasuring yourself on the most commonly used value.
 
 
 <br>
 
-### 2. Provide long options first, then shorten the most commonly used ones.
+### 2.4. Provide long options first, then shorten the most commonly used ones.
 
 
 <br>
 
-### Don't use `-longopt`, instead use `--longopt`
+### 2.5. Don't use `-longopt`, instead use `--longopt`
 
 Copypaste of someones opinion:
 
@@ -151,7 +150,7 @@ I hate `-long` style options too. It's not just aesthetic/confusing, it's object
 
 <br>
 
-### Named flags should be position independent
+### 2.6. Named flags should be position independent
 
 ```jsx
 ls --list --all .
@@ -162,7 +161,7 @@ ls --all --list .
 
 <br>
 
-### Long named flags > short named flags > positional arguments
+### 2.7. Long named flags > short named flags > positional arguments
 
 ```jsx
 find -R . -name '*.txt' -type f
@@ -175,7 +174,7 @@ find . r '*.txt' f
 
 <br>
 
-### List of common conventions often used in CLI tools
+### 2.8. List of common conventions often used in CLI tools
 
 - `-` for marking stdin / stdout
 - `--` for marking end of arguments
@@ -209,7 +208,7 @@ Commonly established conventions take priority.
 
 <br>
 
-### Allow passing sensitive values trough multiple channels
+### 2.9. Allow passing sensitive values trough multiple channels
 
 Flags are not always the best option, for example `--password=qwerty123` really won't work. There has to be a way to pass sensitive data without it being shown to the user.
 A good rule of thumb is to expect your tool to be used in public CI pipeline or shown in youtube tutorial.
@@ -220,7 +219,7 @@ If you have to obfuscate the secrets in your docs to show the option then you're
 
 <br>
 
-### If your tool is big, split it into subcommands
+### 2.10. If your tool is big, split it into subcommands
 
 ```jsx
 aws [global flags] acm [acm specific args] [acm specific flags]
@@ -232,54 +231,54 @@ aws --region=us-east-1 s3 ls --bucket=test
 
 <br><br><br>
 
-# USER EXPERIENCE
+# 3. USER EXPERIENCE
 
 
 <br>
 
-### Inform the user early
+### 3.1. Inform the user early
 
 
 <br>
 
-### Don't go for a long period without output to the user.
+### 3.2. Don't go for a long period without output to the user.
 
 If you do print status messages like that, make sure to send them to STDERR if your utility outputs any actual data (like a report or file listing). Same for progress meters.
 
 
 <br>
 
-### If a command has a side effect provide a dry-run/whatif/no_post option.
+### 3.3. If a command has a side effect provide a dry-run/whatif/no_post option.
 
 
 <br>
 
-### For long running operations, allow the user to recover at a failure point if possible.
+### 3.4. For long running operations, allow the user to recover at a failure point if possible.
 
 
 <br>
 
-### Support scaffolding, if applicable
+### 3.5. Support scaffolding, if applicable
 
 
 <br>
 
-### Support autocompletion
+### 3.6. Support autocompletion
 
 
 <br>
 
-### Make it easy to install and easy to update
+### 3.7. Make it easy to install and easy to update
 
 
 <br>
 
-### Suggest commands on typing errors (`git satus` → `Did you mean git status`)
+### 3.8. Suggest commands on typing errors (`git satus` → `Did you mean git status`)
 
 
 <br>
 
-### always do the least surprising thing
+### 3.9. Always do the least surprising thing
 
 `rm -rf /*` - rm has to be aware what might happen an try to block the user. It's too destructive to accept it without confirmation.
 
@@ -288,31 +287,31 @@ If you do print status messages like that, make sure to send them to STDERR if y
 
 <br>
 
-### Repair what you can — but when you must fail, fail noisily and as soon as possible.
+### 3.10. Repair what you can — but when you must fail, fail noisily and as soon as possible.
 
 
 <br>
 
-### Design for the future, because it will be here sooner than you think.
+### 3.11. Design for the future, because it will be here sooner than you think.
 
 
 <br>
 
-### Aliases provide balance between brevity and discoverability
+### 3.12. Aliases provide balance between brevity and discoverability
 
 Consider splitting your cli into `Resources: ` as in what you can achieve and `Aliases` as in list of shortcuts to do stuff.
 
 
 <br>
 
-### Piping is good for automation but people don't want to pipe
+### 3.13. Piping is good for automation but people don't want to pipe
 
 If its a common operation then provide a dedicated command for it. Either you will or every user will wrap some commands with subshells and pipes without setting ‘set -o pipefail”
 
 
 <br>
 
-### Default to human-first output, but support multiple (json ftw)
+### 3.14. Default to human-first output, but support multiple (json ftw)
 
 Optimize output for humans, `10 days ago` > `2019-07-15T14:32:22Z`
 
@@ -321,7 +320,7 @@ You can use ISO for JSON :)
 
 <br>
 
-### Avoid positional arguments where the order matters
+### 3.15. Avoid positional arguments where the order matters
 
 which one is correct and why?
 
@@ -342,7 +341,7 @@ command subcommand NAME —more-flags
 
 <br>
 
-### Positional arguments are cool when the order doesn't matter
+### 3.16. Positional arguments are cool when the order doesn't matter
 
 ```jsx
 emote repo delete funk more-funk
@@ -353,34 +352,34 @@ emote repo delete more-funk funk
 
 <br>
 
-### Expect that user will try to stop the tool at the worst moment (eg. during lengthy process like cloning a repo)
+### 3.17. Expect that user will try to stop the tool at the worst moment (eg. during lengthy process like cloning a repo)
 
 Be sure to not fail unexpectely and to not leave trash after unfinished action. You can overwrite action on CTRL+C to clean up right before the program finishes.
 
 
 <br><br><br>
 
-# ACCESSIBILITY
+# 4. ACCESSIBILITY
 
 
 <br>
 
-### Keep the output short
+### 4.1. Keep the output short
 
 Try to not go over 80 characters per line of output
 
 Bad
 
-```jsx
-$ ls-dir --help
+```bash
+$ ls --help
 [...]
   --all -- this option allows you to print every file in given directory specified in the input so that you can see every file in local directory even if its hidden.
 ```
 
 Good
 
-```jsx
-$ ls-dir --help
+```bash
+$ ls --help
 [...]
   --all -- print every file including hidden ones
 ```
@@ -388,7 +387,7 @@ $ ls-dir --help
 
 <br>
 
-### `$NO_COLOR` support
+### 4.2. `$NO_COLOR` support
 
 The CLI tool should support commonly used modifiers for it's output.
 See [https://no-color.org/](https://no-color.org/) for more information.
@@ -396,35 +395,35 @@ See [https://no-color.org/](https://no-color.org/) for more information.
 
 <br>
 
-### `--verbose` support
+### 4.3. `--verbose` support
 
 Preferably with some way of increasing/decreasing it.
 
 
 <br>
 
-### Localization support
+### 4.4. Localization support
 
 Common pitfal: [http://www.scalingbits.com/aws/CLI](http://www.scalingbits.com/aws/CLI)
 
 
 <br>
 
-### Translations
+### 4.5. Translations
 
 I don't actually know much about that and how it should work... 
 
 
 <br>
 
-### `$DEBUG` support
+### 4.6. `$DEBUG` support
 
 Tool should provide sensible way to debug it.
 
 
 <br>
 
-### Don't use too many colors and don't expect users have more than 16 colors by default
+### 4.7. Don't use too many colors and don't expect users have more than 16 colors by default
 
 CLI tools don't control their background so the ouput must be background-color agnostic. There shouldn't be any asumption as to the color scheme used by the user, instead all colors should be treated as hints only. Eample: use bold to visibly separate short important parts (like headers),
 
@@ -437,7 +436,7 @@ More info on colors: [https://accessibility.psu.edu/legibility/contrast/](https:
 
 <br>
 
-### Decrease use of emojis to minimum and stick to the old and well known emojis
+### 4.8. Decrease use of emojis to minimum and stick to the old and well known emojis
 
 Think clearly on what you're trying to communicate, too many emojis may obfuscate this where a few words would do. Use emojis to transfer emotions and common behaviours (hand waving to say hello, confetti to express joy or sucess) instead of using them as pictograms with some underlying meaning. This meaning might not be valid in other cultures (praise hands is a good example) or it might not mean what you thought it means. If you have to stop and think what your output with emoji means then you should change that to clarify your intentions.
 
@@ -446,21 +445,21 @@ Another issue is with support - many fonts  fonts don't support recent emojis or
 
 <br>
 
-### Use gender neutral language.
+### 4.9. Use gender neutral language.
 
 [https://man7.org/linux/man-pages/man7/man-pages.7.html](https://man7.org/linux/man-pages/man7/man-pages.7.html)
 
 
 <br>
 
-### Follow american spelling convention
+### 4.10. Follow american spelling convention
 
 color > colour, etc. It's just more common and causes less confusion, don't take this personally.
 
 
 <br>
 
-### Support diagnostic flag of sorts
+### 4.11. Support diagnostic flag of sorts
 
 When your tool fails someone will try to report it, 
 
@@ -469,7 +468,7 @@ When your tool fails someone will try to report it,
 
 <br>
 
-### Use short, terse and simple language for describing the program's behaviour.
+### 4.12. Use short, terse and simple language for describing the program's behaviour.
 
 Do not use slang-specific words if they obfuscate otherwise simple meaning. Try to keep the program-specific slang or brand-specific slang to minimum. One example of that is `yargs` which uses pirate-like terminology to explain its meaning and create a brand around it. It's okay to do so as long as it doesn't spread accross the whole help page or documentation.
 
@@ -480,7 +479,7 @@ Example: some programs support plugins / addons / extensions and then there's an
 
 <br>
 
-### Be aware of your users, their backgrounds and your environment.
+### 4.13. Be aware of your users, their backgrounds and your environment.
 
 Go commands often use `get` for downloading, so your tool should also use it if it needs that feature.
 
@@ -489,14 +488,14 @@ Try to discover, observe and mimic common behaviour of your ecosystem's tools.
 
 <br>
 
-### Don’t use color as the only way to convey information
+### 4.14. Don’t use color as the only way to convey information
 
 Users who are color blind cannot receive information that is conveyed only through color, such as in a color status indicator. Include other visual cues, preferably text, to ensure that information is accessible.
 
 
 <br>
 
-### Avoid using blinking font (ANSI modifier)
+### 4.15. Avoid using blinking font (ANSI modifier)
 
 Testing your work:
 - assistive Tech
@@ -515,57 +514,57 @@ Testing your work:
 
 <br>
 
-### Give users enough time to complete an action
+### 4.16. Give users enough time to complete an action
 
 
 <br>
 
-### Explain what will happen after completing a service / command
+### 4.17. Explain what will happen after completing a service / command
 
 
 <br>
 
-### Make important information clear
+### 4.18. Make important information clear
 
 
 <br>
 
-### Let users check and change their answers before they submit them
+### 4.19. Let users check and change their answers before they submit them
 
 Accessibility is important - make your applications accessible because its the right thing to do, but if you don't want to do it because it's the right thing to do, do it because it's the legally required thing - https://section508.gov/
 
 
 <br><br><br>
 
-# DOCUMENTATION
+# 5. DOCUMENTATION
 
 At minimum your tool should be able to inform the user on how to use it effectively. This is most commonly done with `--help` flag.
 
 
 <br>
 
-### Provide `--version` flag with understandable versioning scheme.
+### 5.1. Provide `--version` flag with understandable versioning scheme.
 
 If you're not sure which one to use go with semver, because it's the most popular one.[https://semver.org/](https://semver.org/)
 
 
 <br>
 
-### Document every file that will impact the behaviour
+### 5.2. Document every file that will impact the behaviour
 
 If your app uses something from `/etc` document that. If your app reads `~/.config/<my-app>/config.ini` document that as well. Every file that impacts the CLI has to be documented, or at least mentioned.
 
 
 <br>
 
-### Provide easy way of updating the tool by itself
+### 5.3. Provide easy way of updating the tool by itself
 
 `$ tool update` should be built in, tested and working out of the box. This might be as simple as downloading appropriate binary and replacing the original one, that's simple enough to support it without any dependencies. If your tool needs more things to update itself, consider simplifing it.
 
 
 <br>
 
-### `--help` is not `man`
+### 5.4. `--help` is not `man`
 
 If possible, support `man` pages as well as your built-in documentation. Many CLI tools have extensive documentation built in under `help` subcommand which is useful, but also limited in some regards. The same docs can be easily regenerated to different format using tools like `ronn`.
 
@@ -576,7 +575,7 @@ If possible, support `man` pages as well as your built-in documentation. Many CL
 
 <br>
 
-### Try to follow man pages when displaying help.
+### 5.5. Try to follow man pages when displaying help.
 
 ```
 NAMESYNOPSIS
@@ -604,12 +603,12 @@ SEE ALSO
 
 <br><br><br>
 
-# CONFIGURATION
+# 6. CONFIGURATION
 
 
 <br>
 
-### 1. Support XDG specification
+### 6.1. Support XDG specification
 
 [https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
 
@@ -620,14 +619,14 @@ this one drives me crazy, one of the most requested changes and it just hangs th
 
 <br>
 
-### Don't invent your own config syntax for configuration
+### 6.2. Don't invent your own config syntax for configuration
 
 Please, don't. Every config format, even the most basic one like INI is better than your own.
 
 
 <br>
 
-### Support multiple output formats if they are required by the users
+### 6.3. Support multiple output formats if they are required by the users
 
 It's better to do it correctly on your side than to let the users pipe your json to `yq` just because they need that output format badly for some reason.
 
@@ -636,21 +635,21 @@ You are creating this tool for humans, make it human friendly :)
 
 <br>
 
-### If behaviour can be altered with env variables then it should be possible to do the same with flags
+### 6.4. If behaviour can be altered with env variables then it should be possible to do the same with flags
 
 If your program uses `XDG_CONFIG_DIR` to place it's config, then you should also support `—config-dir` for doing the same thing.
 
 
 <br><br><br>
 
-# STATEFULNESS
+# 7. STATEFULNESS
 
 Keep it low. CLI is a simple state machine, and it should stay simple.
 
 
 <br>
 
-### If your app has to store some state, store it in one, clearly indicated file.
+### 7.1. If your app has to store some state, store it in one, clearly indicated file.
 
 Don't set environment variables to store anything, it just won't work.
 The best way is to not have a state, second best is to keep it in one (and only one) file.
@@ -662,14 +661,14 @@ Bad example: ???
 
 <br><br><br>
 
-# SCRIPTING
+# 8. SCRIPTING
 
 Always assume that your tool will be wrapped with some script. Folks from `apt-get` never expected that, but it's the reality.
 
 
 <br>
 
-### Support JSON output
+### 8.1 Support JSON output
 
 It's the most universal and by far the most popular way of outputing machine-readable data.
 
@@ -678,7 +677,7 @@ Bonus points: support filtering / limiting the output as well.
 
 <br>
 
-### Be aware of signals
+### 8.2. Be aware of signals
 
 Expect that your tool will receive signals. Your tool should react most commonly to that.
 
@@ -687,21 +686,21 @@ Expect that your tool will receive signals. Your tool should react most commonly
 
 <br>
 
-### Stderr is for errors, stdout is for output.
+### 8.3. Stderr is for errors, stdout is for output.
 
 Stick to it.
 
 
 <br>
 
-### Expect input from stdin, pipe, unix socket, redirection from files etc
+### 8.4. Expect input from stdin, pipe, unix socket, redirection from files etc
 
 In other words: make it input-agnostic. Don't assume anything about the source input because it probably won't be true.
 
 
 <br>
 
-### STDOUT is your API. You have to expect people wrapping it like an api.
+### 8.5. STDOUT is your API. You have to expect people wrapping it like an api.
 
 If you don't provide a machine-readable output (—json), then stdout will be used as a machine-readable output. It will be parsed, processed with various tools and will be relied upon to do the work. This matters *a lot* when your tool is big enough.
 
@@ -710,12 +709,12 @@ If you don't provide a machine-readable output (—json), then stdout will be us
 
 <br><br><br>
 
-# DEVELOPMENT
+# 9. DEVELOPMENT
 
 
 <br>
 
-### Test your code, heavly. Test your CLI commands heavly.
+### 9.1. Test your code, heavly. Test your CLI commands heavly.
 
 One tip is to don't hook up annonymous function to your CLI framework but instead keep them in separate module and then hook them to framework's API explicitly in some separate module.
 That way you will be able to easily test your command runners (functions) without the burden of dealing with CLI framework.
@@ -723,7 +722,7 @@ That way you will be able to easily test your command runners (functions) withou
 
 <br>
 
-### Connect your command handlers (functions) to the CLI framework boringly.
+### 9.2. Connect your command handlers (functions) to the CLI framework boringly.
 
 It has to be simple. boring, moundaine and uninteresting code, because it is uninteresting code. The interesting part is in the command handler function, that's where magic happens! Keep the complexity out of the handler<>CLI framework bridge.
 
@@ -733,12 +732,12 @@ It has to be simple. boring, moundaine and uninteresting code, because it is uni
 
 <br><br><br>
 
-# RESOURCES USED
+# 10. RESOURCES USED
 
 
 <br>
 
-### Links:
+### 10.1. Links:
 
 <br>
 
@@ -777,7 +776,7 @@ It has to be simple. boring, moundaine and uninteresting code, because it is uni
 
 <br>
 
-### Collections:
+### 10.2. Collections:
 
 <br>
 
