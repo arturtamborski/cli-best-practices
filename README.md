@@ -1,29 +1,15 @@
-# cli-best-practises
-This document describes best practises and most commonly used patterns used in command line interfaces (CLI)  👩‍💻.
+<br>
 
-Use this link for better reading experience:  
-https://hackmd.io/@arturtamborski/cli-best-practices
-
----
-> :bulb: WIP, I am still working on that :)
----
+# [cli-best-practises](https://hackmd.io/@arturtamborski/cli-best-practices)
 
 
-<details><summary><em>my notes, please ignore for now</em></summary>
+<br>
 
-- [x]  TODO: ask `@carolynvs` for more resources, correct errors?
-- [ ]  TODO: find more people who care about good CLIs, ask for their help
-- [ ]  TODO: share this on github (`awesome-cli-practices`? Still thinking on good title, probably something starting with `awesome-` so it's easier to find it among other GH repos).
-- [ ]  TODO: talk with a11y folks on their ideas for this specific environment (no resources so far...)
-- [ ]  TODO: clean it up, add example of bad/good to every point.
-
-</details>
+# BASICS
 
 
----
-asdalskdja
 
-# BASICSu
+<br>
 
 ### 1. Make sure that your tool at least works
 
@@ -31,24 +17,30 @@ That may sound obvious but it's very important that your tool at **minimum** jus
 
 Bad
 
-```jsx
-$ ls-dir
+```bash
+$ ls
 Error: cannot open directory "".
 Stack trace: [...]
 ```
 
 Good
 
-```jsx
-$ ls-dir
+```bash
+$ ls
 Error: no input specified! Please use --help to find out more.
 ```
 
 Please, note that "just works" is your minimum viable target to achieve. You should aim much higher than that, but this is sensible starting point for your tool.
 
+<br>
+
+
 ### 2. Document every public flag
 
 Every flag that's available to the user must be documented. It is discouraged to have hidden flags but if that's the case - make sure that hidden flags are not used as an example or do not show up in answers.
+
+
+<br>
 
 ### 3. Stick to well established conventions.
 
@@ -56,49 +48,94 @@ Don't reinvent the flags with your fancy syntax like `-Cool_Flag:someValue`. It'
 
 (Suggested by zapier.com)
 
+
+<br>
+
 ### 4. Utilize exit codes
 
 Use them, expose them and inform the user about them.
+
+
+<br>
 
 ### 5. Provide `--help`
 
 Your tool has to provide some built-in way of informing the user what it does and how to use it. That's the minimum requirement but it's absolutely necessary.
 
+
+<br>
+
 ### 6. Learn from others, copy the best.
 
 gh-cli, heroku cli
+
+
+<br>
 
 ### Keep the tool name short, unique and easy to remember.
 
 If that's not possible consider supporting alternative binary name (angular-cli → ng).
 
+
+<br>
+
 ### Tool has to be predictable
+
+
+<br>
 
 ### Tool has to be task oriented
 
+
+<br>
+
 ### Tool has to be friendly to people and scripts.
+
+
+<br>
 
 ### Tool has to be high quality
 
 It's as important as your API. Actually, it *is* your API, but for humans.
 
+
+<br>
+
 ### Commands that read like sentences are easier to remember
 
+
+<br>
+
 # FLAGS
+
+
+<br>
 
 ### As always, Consistency is the Key.
 
 By far the most commonly used (and thus the *only good way)* of writting flags is with the dash-case. Do not use anything else. Yeah, java uses `-Xmx`, but it's their problem, not your option. Do not use anything else other than `--option-name`. Please.
 
+
+<br>
+
 ### This applies to environment variables as well.
 
 `GOOD_ENV_VAR_NAME` vs `BAD_envVarName`. Yes, they are case sensitive, no, you should not leverage that. Please stick with upper casing or `SCREAMING_SNAKE_CASE` if that convinces you more.
+
+
+<br>
 
 ### 1. Every flag that can have a default value, should have default value.
 
 Defaults have to be sensible and meaningful. If you are not sure, better to leave it off and come back after reasuring yourself on the most commonly used value.
 
+
+<br>
+
 ### 2. Provide long options first, then shorten the most commonly used ones.
+
+
+<br>
 
 ### Don't use `-longopt`, instead use `--longopt`
 
@@ -111,6 +148,9 @@ I hate `-long` style options too. It's not just aesthetic/confusing, it's object
 - You can't (or not without crazy logic and a confusing UX) have variables passed with no space, like `-ffoobar`
 - 
 
+
+<br>
+
 ### Named flags should be position independent
 
 ```jsx
@@ -118,6 +158,9 @@ ls --list --all .
 # is the same as...
 ls --all --list .
 ```
+
+
+<br>
 
 ### Long named flags > short named flags > positional arguments
 
@@ -128,6 +171,9 @@ find . -R -n '*.txt' -f
 vs
 find . r '*.txt' f
 ```
+
+
+<br>
 
 ### List of common conventions often used in CLI tools
 
@@ -160,6 +206,9 @@ Commonly established conventions take priority.
 
 `--all -> -a`
 
+
+<br>
+
 ### Allow passing sensitive values trough multiple channels
 
 Flags are not always the best option, for example `--password=qwerty123` really won't work. There has to be a way to pass sensitive data without it being shown to the user.
@@ -167,6 +216,9 @@ A good rule of thumb is to expect your tool to be used in public CI pipeline or 
 If you have to obfuscate the secrets in your docs to show the option then you're probably doing it incorrectly, because every user will have to keep that in mind as well.
 
 `env MY_TOOL_SECRET | my-tool --password -` is a good way of sending the input secretly. 
+
+
+<br>
 
 ### If your tool is big, split it into subcommands
 
@@ -177,25 +229,55 @@ aws [global flags] s3 [s3 specific args] [s3 specific flags]
 aws --region=us-east-1 s3 ls --bucket=test
 ```
 
+
+<br>
+
 # USER EXPERIENCE
 
+
+<br>
+
 ### Inform the user early
+
+
+<br>
 
 ### Don't go for a long period without output to the user.
 
 If you do print status messages like that, make sure to send them to STDERR if your utility outputs any actual data (like a report or file listing). Same for progress meters.
 
+
+<br>
+
 ### If a command has a side effect provide a dry-run/whatif/no_post option.
+
+
+<br>
 
 ### For long running operations, allow the user to recover at a failure point if possible.
 
+
+<br>
+
 ### Support scaffolding, if applicable
+
+
+<br>
 
 ### Support autocompletion
 
+
+<br>
+
 ### Make it easy to install and easy to update
 
+
+<br>
+
 ### Suggest commands on typing errors (`git satus` → `Did you mean git status`)
+
+
+<br>
 
 ### always do the least surprising thing
 
@@ -203,23 +285,41 @@ If you do print status messages like that, make sure to send them to STDERR if y
 
 `pkill -v <some process id>` - `v` stands for "inverse input", so this actually kills every process except the one passed in input. Why?
 
+
+<br>
+
 ### Repair what you can — but when you must fail, fail noisily and as soon as possible.
 
+
+<br>
+
 ### Design for the future, because it will be here sooner than you think.
+
+
+<br>
 
 ### Aliases provide balance between brevity and discoverability
 
 Consider splitting your cli into `Resources: ` as in what you can achieve and `Aliases` as in list of shortcuts to do stuff.
 
+
+<br>
+
 ### Piping is good for automation but people don't want to pipe
 
 If its a common operation then provide a dedicated command for it. Either you will or every user will wrap some commands with subshells and pipes without setting ‘set -o pipefail”
+
+
+<br>
 
 ### Default to human-first output, but support multiple (json ftw)
 
 Optimize output for humans, `10 days ago` > `2019-07-15T14:32:22Z`
 
 You can use ISO for JSON :)
+
+
+<br>
 
 ### Avoid positional arguments where the order matters
 
@@ -239,6 +339,9 @@ emote add repo funk --url https://x.com/funk.json
 
 command subcommand NAME —more-flags 
 
+
+<br>
+
 ### Positional arguments are cool when the order doesn't matter
 
 ```jsx
@@ -247,11 +350,20 @@ vs
 emote repo delete more-funk funk
 ```
 
+
+<br>
+
 ### Expect that user will try to stop the tool at the worst moment (eg. during lengthy process like cloning a repo)
 
 Be sure to not fail unexpectely and to not leave trash after unfinished action. You can overwrite action on CTRL+C to clean up right before the program finishes.
 
+
+<br>
+
 # ACCESSIBILITY
+
+
+<br>
 
 ### Keep the output short
 
@@ -273,26 +385,44 @@ $ ls-dir --help
   --all -- print every file including hidden ones
 ```
 
+
+<br>
+
 ### `$NO_COLOR` support
 
 The CLI tool should support commonly used modifiers for it's output.
 See [https://no-color.org/](https://no-color.org/) for more information.
 
+
+<br>
+
 ### `--verbose` support
 
 Preferably with some way of increasing/decreasing it.
+
+
+<br>
 
 ### Localization support
 
 Common pitfal: [http://www.scalingbits.com/aws/CLI](http://www.scalingbits.com/aws/CLI)
 
+
+<br>
+
 ### Translations
 
 I don't actually know much about that and how it should work... 
 
+
+<br>
+
 ### `$DEBUG` support
 
 Tool should provide sensible way to debug it.
+
+
+<br>
 
 ### Don't use too many colors and don't expect users have more than 16 colors by default
 
@@ -304,25 +434,40 @@ Unless your application controls the whole terminal (like vim, mutt, etc) it's j
 
 More info on colors: [https://accessibility.psu.edu/legibility/contrast/](https://accessibility.psu.edu/legibility/contrast/)
 
+
+<br>
+
 ### Decrease use of emojis to minimum and stick to the old and well known emojis
 
 Think clearly on what you're trying to communicate, too many emojis may obfuscate this where a few words would do. Use emojis to transfer emotions and common behaviours (hand waving to say hello, confetti to express joy or sucess) instead of using them as pictograms with some underlying meaning. This meaning might not be valid in other cultures (praise hands is a good example) or it might not mean what you thought it means. If you have to stop and think what your output with emoji means then you should change that to clarify your intentions.
 
 Another issue is with support - many fonts  fonts don't support recent emojis or are visualised differently across operating system (consider every font used in every CI pipeline + every monospaced font on commonly used OS + some of these are not update (Ubuntu 12? Ubuntu 10? Old mac? They all will have problems with emojis) Use [emojipedia.com](http://emojipedia.com) to verify that emojis are actually representing the same thing and same meaning.
 
+
+<br>
+
 ### Use gender neutral language.
 
 [https://man7.org/linux/man-pages/man7/man-pages.7.html](https://man7.org/linux/man-pages/man7/man-pages.7.html)
 
+
+<br>
+
 ### Follow american spelling convention
 
 color > colour, etc. It's just more common and causes less confusion, don't take this personally.
+
+
+<br>
 
 ### Support diagnostic flag of sorts
 
 When your tool fails someone will try to report it, 
 
 (find example of issue where they ask to rerun the command with some diagnostic switch for easier debugging
+
+
+<br>
 
 ### Use short, terse and simple language for describing the program's behaviour.
 
@@ -332,15 +477,24 @@ Simple things should be named simply, known things should be named with known wo
 
 Example: some programs support plugins / addons / extensions and then there's ansible galaxy.
 
+
+<br>
+
 ### Be aware of your users, their backgrounds and your environment.
 
 Go commands often use `get` for downloading, so your tool should also use it if it needs that feature.
 
 Try to discover, observe and mimic common behaviour of your ecosystem's tools.
 
+
+<br>
+
 ### Don’t use color as the only way to convey information
 
 Users who are color blind cannot receive information that is conveyed only through color, such as in a color status indicator. Include other visual cues, preferably text, to ensure that information is accessible.
+
+
+<br>
 
 ### Avoid using blinking font (ANSI modifier)
 
@@ -358,31 +512,58 @@ Testing your work:
 
 [https://speakerdeck.com/raqueldesigns/everyone-should-be-able-to-use-your-software-accessibility-for-balanced-teams?slide=42](https://speakerdeck.com/raqueldesigns/everyone-should-be-able-to-use-your-software-accessibility-for-balanced-teams?slide=42)
 
+
+<br>
+
 ### Give users enough time to complete an action
+
+
+<br>
 
 ### Explain what will happen after completing a service / command
 
+
+<br>
+
 ### Make important information clear
+
+
+<br>
 
 ### Let users check and change their answers before they submit them
 
 Accessibility is important - make your applications accessible because its the right thing to do, but if you don't want to do it because it's the right thing to do, do it because it's the legally required thing - https://section508.gov/
 
+
+<br>
+
 # DOCUMENTATION
 
 At minimum your tool should be able to inform the user on how to use it effectively. This is most commonly done with `--help` flag.
+
+
+<br>
 
 ### Provide `--version` flag with understandable versioning scheme.
 
 If you're not sure which one to use go with semver, because it's the most popular one.[https://semver.org/](https://semver.org/)
 
+
+<br>
+
 ### Document every file that will impact the behaviour
 
 If your app uses something from `/etc` document that. If your app reads `~/.config/<my-app>/config.ini` document that as well. Every file that impacts the CLI has to be documented, or at least mentioned.
 
+
+<br>
+
 ### Provide easy way of updating the tool by itself
 
 `$ tool update` should be built in, tested and working out of the box. This might be as simple as downloading appropriate binary and replacing the original one, that's simple enough to support it without any dependencies. If your tool needs more things to update itself, consider simplifing it.
+
+
+<br>
 
 ### `--help` is not `man`
 
@@ -391,6 +572,9 @@ If possible, support `man` pages as well as your built-in documentation. Many CL
 [https://rtomayko.github.io/ronn/](https://rtomayko.github.io/ronn/)
 
 [https://man7.org/linux/man-pages/man7/man-pages.7.html](https://man7.org/linux/man-pages/man7/man-pages.7.html)
+
+
+<br>
 
 ### Try to follow man pages when displaying help.
 
@@ -417,7 +601,13 @@ DESCRIPTION
 SEE ALSO
 ```
 
+
+<br>
+
 # CONFIGURATION
+
+
+<br>
 
 ### 1. Support XDG specification
 
@@ -427,9 +617,15 @@ SEE ALSO
 
 this one drives me crazy, one of the most requested changes and it just hangs there for over three years now.
 
+
+<br>
+
 ### Don't invent your own config syntax for configuration
 
 Please, don't. Every config format, even the most basic one like INI is better than your own.
+
+
+<br>
 
 ### Support multiple output formats if they are required by the users
 
@@ -437,13 +633,22 @@ It's better to do it correctly on your side than to let the users pipe your json
 
 You are creating this tool for humans, make it human friendly :)
 
+
+<br>
+
 ### If behaviour can be altered with env variables then it should be possible to do the same with flags
 
 If your program uses `XDG_CONFIG_DIR` to place it's config, then you should also support `—config-dir` for doing the same thing.
 
+
+<br>
+
 # STATEFULNESS
 
 Keep it low. CLI is a simple state machine, and it should stay simple.
+
+
+<br>
 
 ### If your app has to store some state, store it in one, clearly indicated file.
 
@@ -454,9 +659,15 @@ Good example: terraform
 
 Bad example: ???
 
+
+<br>
+
 # SCRIPTING
 
 Always assume that your tool will be wrapped with some script. Folks from `apt-get` never expected that, but it's the reality.
+
+
+<br>
 
 ### Support JSON output
 
@@ -464,19 +675,31 @@ It's the most universal and by far the most popular way of outputing machine-rea
 
 Bonus points: support filtering / limiting the output as well.
 
+
+<br>
+
 ### Be aware of signals
 
 Expect that your tool will receive signals. Your tool should react most commonly to that.
 
 (how, exaclty?)
 
+
+<br>
+
 ### Stderr is for errors, stdout is for output.
 
 Stick to it.
 
+
+<br>
+
 ### Expect input from stdin, pipe, unix socket, redirection from files etc
 
 In other words: make it input-agnostic. Don't assume anything about the source input because it probably won't be true.
+
+
+<br>
 
 ### STDOUT is your API. You have to expect people wrapping it like an api.
 
@@ -484,103 +707,112 @@ If you don't provide a machine-readable output (—json), then stdout will be us
 
 —json (or any other switch for machine readable output) is your safety valve, if you don't have that then you have to be way more concius on how output is used.
 
+
+<br>
+
 # DEVELOPMENT
+
+
+<br>
 
 ### Test your code, heavly. Test your CLI commands heavly.
 
 One tip is to don't hook up annonymous function to your CLI framework but instead keep them in separate module and then hook them to framework's API explicitly in some separate module.
 That way you will be able to easily test your command runners (functions) without the burden of dealing with CLI framework.
 
+
+<br>
+
 ### Connect your command handlers (functions) to the CLI framework boringly.
 
 It has to be simple. boring, moundaine and uninteresting code, because it is uninteresting code. The interesting part is in the command handler function, that's where magic happens! Keep the complexity out of the handler<>CLI framework bridge.
 
+<br>
+
 ---
+
+<br>
 
 # RESOURCES USED
 
+
+<br>
+
 ### Links:
 
-[http://mds.is/a11y/](http://mds.is/a11y/)
+- [http://mds.is/a11y/](http://mds.is/a11y/)
+- [https://www.w3.org/TR/WCAG21/](https://www.w3.org/TR/WCAG21/)
+- [https://clig.dev/](https://clig.dev/#further-reading)
+- [https://semver.org/](https://semver.org/)
+- [https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46](https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46)
+- [https://github.com/lirantal/nodejs-cli-apps-best-practices](https://github.com/lirantal/nodejs-cli-apps-best-practices)
+- [https://www.shopify.com/partners/blog/content-strategy](https://www.shopify.com/partners/blog/content-strategy)
+- [https://blog.developer.atlassian.com/10-design-principles-for-delightful-clis/](https://blog.developer.atlassian.com/10-design-principles-for-delightful-clis/)
+- [https://devcenter.heroku.com/articles/cli-style-guide](https://devcenter.heroku.com/articles/cli-style-guide)
+- [https://zapier.com/engineering/how-to-cli/](https://zapier.com/engineering/how-to-cli/)
+- [https://eng.localytics.com/exploring-cli-best-practices/](https://eng.localytics.com/exploring-cli-best-practices/)
+- [http://codyaray.com/2020/07/cli-design-best-practices](http://codyaray.com/2020/07/cli-design-best-practices)
+- [https://dev.to/nickparsons/crafting-a-command-line-experience-that-developers-love-4451](https://dev.to/nickparsons/crafting-a-command-line-experience-that-developers-love-4451)
+- [https://devcenter.heroku.com/articles/cli-style-guide](https://devcenter.heroku.com/articles/cli-style-guide)
+- [https://relay.sh/blog/command-line-ux-in-2020/](https://relay.sh/blog/command-line-ux-in-2020/)
+- [http://catb.org/esr/writings/taoup/html/ch01s06.html#id2877610](http://catb.org/esr/writings/taoup/html/ch01s06.html#id2877610)
+- [https://scis.uohyd.ac.in/~apcs/itw/UNIXProgrammingEnvironment.pdf](https://scis.uohyd.ac.in/~apcs/itw/UNIXProgrammingEnvironment.pdf)
+- [https://bitbucket.org/vasudevram/s](https://bitbucket.org/vasudevram/selpg/src/master/DevelopingALinuxCommandLineUtility.pdf)
+- [https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html)[elpg/src/master/DevelopingALinuxCommandLineUtility.pdf](https://bitbucket.org/vasudevram/selpg/src/master/DevelopingALinuxCommandLineUtility.pdf)
+- [https://man7.org/linux/man-pages/man7/man-pages.7.html](https://man7.org/linux/man-pages/man7/man-pages.7.html)
+- [https://www.gnu.org/prep/standards/html_node/Command_002dLine-Interfaces.html](https://www.gnu.org/prep/standards/html_node/Command_002dLine-Interfaces.html)
+- [https://www.youtube.com/watch?v=eMz0vni6PAw](https://www.youtube.com/watch?v=eMz0vni6PAw)
+- [https://accessibility.psu.edu/legibility/contrast/](https://accessibility.psu.edu/legibility/contrast/)
+- [https://accessibility.psu.edu/color/brightcolors/](https://accessibility.psu.edu/color/brightcolors/)
+- [https://accessibility.voxmedia.com/](https://accessibility.voxmedia.com/)
+- [https://accessibility.18f.gov/](https://accessibility.18f.gov/)
+- [https://accessibility-handbook.mybluemix.net/design/a11y-handbook/](https://accessibility-handbook.mybluemix.net/design/a11y-handbook/)
+- [https://ukhomeoffice.github.io/accessibility-posters/posters/accessibility-posters.pdf](https://ukhomeoffice.github.io/accessibility-posters/posters/accessibility-posters.pdf)
+- [https://www.southampton.ac.uk/~km2/teaching/hci/lec19.htm](https://www.southampton.ac.uk/~km2/teaching/hci/lec19.htm)
+- [https://speakerdeck.com/crystalprestonwatson/its-always-sunny-in-mobile-accessibility?slide=46](https://speakerdeck.com/crystalprestonwatson/its-always-sunny-in-mobile-accessibility?slide=46)
+- [https://click.palletsprojects.com/en/7.x/](https://click.palletsprojects.com/en/7.x/)
 
-[https://www.w3.org/TR/WCAG21/](https://www.w3.org/TR/WCAG21/)
 
-[https://clig.dev/](https://clig.dev/#further-reading)
-
-[https://semver.org/](https://semver.org/)
-
-[https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46](https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46)
-
-[https://github.com/lirantal/nodejs-cli-apps-best-practices](https://github.com/lirantal/nodejs-cli-apps-best-practices)
-
-[https://www.shopify.com/partners/blog/content-strategy](https://www.shopify.com/partners/blog/content-strategy)
-
-[https://blog.developer.atlassian.com/10-design-principles-for-delightful-clis/](https://blog.developer.atlassian.com/10-design-principles-for-delightful-clis/)
-
-[https://devcenter.heroku.com/articles/cli-style-guide](https://devcenter.heroku.com/articles/cli-style-guide)
-
-[https://zapier.com/engineering/how-to-cli/](https://zapier.com/engineering/how-to-cli/)
-
-[https://eng.localytics.com/exploring-cli-best-practices/](https://eng.localytics.com/exploring-cli-best-practices/)
-
-[http://codyaray.com/2020/07/cli-design-best-practices](http://codyaray.com/2020/07/cli-design-best-practices)
-
-[https://dev.to/nickparsons/crafting-a-command-line-experience-that-developers-love-4451](https://dev.to/nickparsons/crafting-a-command-line-experience-that-developers-love-4451)
-
-[https://devcenter.heroku.com/articles/cli-style-guide](https://devcenter.heroku.com/articles/cli-style-guide)
-
-[https://relay.sh/blog/command-line-ux-in-2020/](https://relay.sh/blog/command-line-ux-in-2020/)
-
-[http://catb.org/esr/writings/taoup/html/ch01s06.html#id2877610](http://catb.org/esr/writings/taoup/html/ch01s06.html#id2877610)
-
-[https://scis.uohyd.ac.in/~apcs/itw/UNIXProgrammingEnvironment.pdf](https://scis.uohyd.ac.in/~apcs/itw/UNIXProgrammingEnvironment.pdf)
-
-[https://bitbucket.org/vasudevram/s](https://bitbucket.org/vasudevram/selpg/src/master/DevelopingALinuxCommandLineUtility.pdf)
-
-[https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html)[elpg/src/master/DevelopingALinuxCommandLineUtility.pdf](https://bitbucket.org/vasudevram/selpg/src/master/DevelopingALinuxCommandLineUtility.pdf)
-
-[https://man7.org/linux/man-pages/man7/man-pages.7.html](https://man7.org/linux/man-pages/man7/man-pages.7.html)
-
-[https://www.gnu.org/prep/standards/html_node/Command_002dLine-Interfaces.html](https://www.gnu.org/prep/standards/html_node/Command_002dLine-Interfaces.html)
-
-[https://www.youtube.com/watch?v=eMz0vni6PAw](https://www.youtube.com/watch?v=eMz0vni6PAw)
-
-[https://accessibility.psu.edu/legibility/contrast/](https://accessibility.psu.edu/legibility/contrast/)
-
-[https://accessibility.psu.edu/color/brightcolors/](https://accessibility.psu.edu/color/brightcolors/)
-
-[https://accessibility.voxmedia.com/](https://accessibility.voxmedia.com/)
-
-[https://accessibility.18f.gov/](https://accessibility.18f.gov/)
-
-[https://accessibility-handbook.mybluemix.net/design/a11y-handbook/](https://accessibility-handbook.mybluemix.net/design/a11y-handbook/)
-
-[https://ukhomeoffice.github.io/accessibility-posters/posters/accessibility-posters.pdf](https://ukhomeoffice.github.io/accessibility-posters/posters/accessibility-posters.pdf)
-
-[https://www.southampton.ac.uk/~km2/teaching/hci/lec19.htm](https://www.southampton.ac.uk/~km2/teaching/hci/lec19.htm)
-
-[https://speakerdeck.com/crystalprestonwatson/its-always-sunny-in-mobile-accessibility?slide=46](https://speakerdeck.com/crystalprestonwatson/its-always-sunny-in-mobile-accessibility?slide=46)
-
-[https://click.palletsprojects.com/en/7.x/](https://click.palletsprojects.com/en/7.x/)
+<br>
 
 ### Collections:
 
-[https://a11yresources.webflow.io/](https://a11yresources.webflow.io/)
+<br>
 
-[https://github.com/brunopulis/awesome-a11y](https://github.com/brunopulis/awesome-a11y)
+- [https://a11yresources.webflow.io/](https://a11yresources.webflow.io/)
+- [https://github.com/brunopulis/awesome-a11y](https://github.com/brunopulis/awesome-a11y)
+- [https://github.com/Kikobeats/awesome-cli](https://github.com/Kikobeats/awesome-cli)
+- [https://github.com/alebcay/awesome-shell](https://github.com/alebcay/awesome-shell)
+- [https://github.com/jlevy/the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line)
+- [https://stackoverflow.com/questions/28708037/recommendations-best-practices-on-custom-node-js-cli-tool-config-files-location](https://stackoverflow.com/questions/28708037/recommendations-best-practices-on-custom-node-js-cli-tool-config-files-location)
+- [https://stackoverflow.com/a/28708450](https://stackoverflow.com/a/28708450)
+- [https://oclif.io/docs/introduction.html](https://oclif.io/docs/introduction.html)
+- [https://github.com/matuzo/HTMHell](https://github.com/matuzo/HTMHell)
+- [https://github.com/palash25/best-practices-checklist](https://github.com/palash25/best-practices-checklist)
 
-[https://github.com/Kikobeats/awesome-cli](https://github.com/Kikobeats/awesome-cli)
 
-[https://github.com/alebcay/awesome-shell](https://github.com/alebcay/awesome-shell)
+<br>
 
-[https://github.com/jlevy/the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line)
+---
 
-[https://stackoverflow.com/questions/28708037/recommendations-best-practices-on-custom-node-js-cli-tool-config-files-location](https://stackoverflow.com/questions/28708037/recommendations-best-practices-on-custom-node-js-cli-tool-config-files-location)
+<br>
 
-[https://stackoverflow.com/a/28708450](https://stackoverflow.com/a/28708450)
+<small>
+Thank you for reading :) You're welcome to comment this list on
+hackmd or on github.
+</small>
 
-[https://oclif.io/docs/introduction.html](https://oclif.io/docs/introduction.html)
 
-[https://github.com/matuzo/HTMHell](https://github.com/matuzo/HTMHell)
+<br>
+<small><details><summary><em>
+my notes, please ignore for now :)
+</em></summary><small></small>
 
-[https://github.com/palash25/best-practices-checklist](https://github.com/palash25/best-practices-checklist)
+- [x]  TODO: ask `@carolynvs` for more resources, correct errors?
+- [ ]  TODO: find more people who care about good CLIs, ask for their help
+- [ ]  TODO: share this on github (`awesome-cli-practices`? Still thinking on good title, probably something starting with `awesome-` so it's easier to find it among other GH repos).
+- [ ]  TODO: talk with a11y folks on their ideas for this specific environment (no resources so far...)
+- [ ]  TODO: clean it up, add example of bad/good to every point.
+
+</details></small>
+<br>
