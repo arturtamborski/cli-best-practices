@@ -3,7 +3,7 @@
 # [cli-best-practises](https://hackmd.io/@arturtamborski/cli-best-practices)
 
 
-<br>
+<br><br><br>
 
 # BASICS
 
@@ -104,7 +104,7 @@ It's as important as your API. Actually, it *is* your API, but for humans.
 ### Commands that read like sentences are easier to remember
 
 
-<br>
+<br><br><br>
 
 # FLAGS
 
@@ -230,7 +230,7 @@ aws --region=us-east-1 s3 ls --bucket=test
 ```
 
 
-<br>
+<br><br><br>
 
 # USER EXPERIENCE
 
@@ -358,7 +358,7 @@ emote repo delete more-funk funk
 Be sure to not fail unexpectely and to not leave trash after unfinished action. You can overwrite action on CTRL+C to clean up right before the program finishes.
 
 
-<br>
+<br><br><br>
 
 # ACCESSIBILITY
 
@@ -535,7 +535,7 @@ Testing your work:
 Accessibility is important - make your applications accessible because its the right thing to do, but if you don't want to do it because it's the right thing to do, do it because it's the legally required thing - https://section508.gov/
 
 
-<br>
+<br><br><br>
 
 # DOCUMENTATION
 
@@ -602,7 +602,7 @@ SEE ALSO
 ```
 
 
-<br>
+<br><br><br>
 
 # CONFIGURATION
 
@@ -641,7 +641,7 @@ You are creating this tool for humans, make it human friendly :)
 If your program uses `XDG_CONFIG_DIR` to place it's config, then you should also support `—config-dir` for doing the same thing.
 
 
-<br>
+<br><br><br>
 
 # STATEFULNESS
 
@@ -660,7 +660,7 @@ Good example: terraform
 Bad example: ???
 
 
-<br>
+<br><br><br>
 
 # SCRIPTING
 
@@ -708,7 +708,7 @@ If you don't provide a machine-readable output (—json), then stdout will be us
 —json (or any other switch for machine readable output) is your safety valve, if you don't have that then you have to be way more concius on how output is used.
 
 
-<br>
+<br><br><br>
 
 # DEVELOPMENT
 
@@ -731,7 +731,7 @@ It has to be simple. boring, moundaine and uninteresting code, because it is uni
 
 ---
 
-<br>
+<br><br><br>
 
 # RESOURCES USED
 
@@ -739,6 +739,8 @@ It has to be simple. boring, moundaine and uninteresting code, because it is uni
 <br>
 
 ### Links:
+
+<br>
 
 - [http://mds.is/a11y/](http://mds.is/a11y/)
 - [https://www.w3.org/TR/WCAG21/](https://www.w3.org/TR/WCAG21/)
