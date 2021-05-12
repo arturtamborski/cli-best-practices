@@ -2,6 +2,20 @@
 
 # [cli-best-practices](https://hackmd.io/@arturtamborski/cli-best-practices)
 
+<p align="center">
+Collection of best practices for CLI tools 👩‍💻
+</p>
+
+<p align="center"><small>
+
+:black_medium_small_square: 
+[github link](https://github.com/arturtamborski/cli-best-practices)
+:black_medium_small_square: 
+[hackmd link](https://hackmd.io/@arturtamborski/cli-best-practices)
+:black_medium_small_square: 
+
+</small></p>
+
 
 <br><br><br>
 
