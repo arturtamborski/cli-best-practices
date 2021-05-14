@@ -32,7 +32,6 @@ Bad
 
 ```bash
 $ ls
-Error: cannot open directory "".
 Stack trace: [...]
 ```
 
@@ -786,6 +785,7 @@ It has to be simple. boring, moundaine and uninteresting code, because it is uni
 - [https://www.southampton.ac.uk/~km2/teaching/hci/lec19.htm](https://www.southampton.ac.uk/~km2/teaching/hci/lec19.htm)
 - [https://speakerdeck.com/crystalprestonwatson/its-always-sunny-in-mobile-accessibility?slide=46](https://speakerdeck.com/crystalprestonwatson/its-always-sunny-in-mobile-accessibility?slide=46)
 - [https://click.palletsprojects.com/en/7.x/](https://click.palletsprojects.com/en/7.x/)
+- [https://rome.tools/#technical](https://rome.tools/#technical)
 
 
 <br>
